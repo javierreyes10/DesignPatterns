@@ -9,15 +9,15 @@ namespace DesignPatterns.Memento
         public static void Demo()
         {
             var editor = new Editor("Javier", "Calibri A", "12 A");
-            var history = new History();
+            var history = new History(editor);
 
-            history.Backup(editor.CreateBackup());
+            history.Backup();
 
             editor.Contet = "Javier Antonio";
             editor.FontSize = "20 B";
             editor.FontName = "Arial Black B";
 
-            history.Backup(editor.CreateBackup());
+            history.Backup();
 
             editor.Contet = "Javier Antonio Reyes";
             editor.FontSize = "30 C";
@@ -25,11 +25,11 @@ namespace DesignPatterns.Memento
 
             Console.WriteLine(editor.ToString());
 
-            editor.Restore(history.Undo());
+            history.Undo();
 
             Console.WriteLine(editor.ToString());
 
-            editor.Restore(history.Undo());
+            history.Undo();
 
             Console.WriteLine(editor.ToString());
         }
